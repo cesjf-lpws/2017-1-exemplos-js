@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Exemplo 02</title>
+  </head>
+  <body>
+    <h1>Exemplo 02</h1>
+    <script>
+    console.log("Exemplo 02");
+    var custo  = 1100.13;
+    var parcelas = 12;
+    var juros = 5/100;
+    imprimeParcelaComJuros(custo,parcelas,juros);
+
+    imprimeParcelaComJuros(2100.13, 6, 3/100);
+    imprimeParcelaComJuros(100.13, 3, 2/100);
+
+
+    function imprimeParcelaComJuros(custoP, parcelasP, jurosP){
+      console.log("Custo do produto: ", custoP);
+      console.log("Parcelas: " + parcelasP);
+      console.log("Juros: " + (2+jurosP*100) + "%");
+      console.log(
+        "Valor da parcela: "+     custoP*(1+jurosP)/parcelasP
+      );
+    }
+
+
+    </script>
+
+  </body>
+</html>

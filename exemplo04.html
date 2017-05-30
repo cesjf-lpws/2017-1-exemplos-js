@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Exemplo 04</title>
+</head>
+
+<body>
+  <h1>Exemplo 04</h1>
+  <script>
+    var p1 = {
+      nome: "Fulano",
+      nascimento: 1999,
+      altura: 1.78
+    };
+
+    function imprimeNome(pessoa) {
+      console.log("Nome:\t" + pessoa.nome);
+    }
+
+    function imprimeIdade(pessoa) {
+      console.log("Idade:\t" + (2017 - pessoa.nascimento));
+    }
+
+    function imprimeAltura(pessoa) {
+      console.log("Altura:\t" + pessoa.altura + "m");
+    }
+
+    function imprimeFicha(pessoa){
+      imprimeNome(pessoa);
+      imprimeIdade(pessoa);
+      imprimeAltura(pessoa);
+    }
+
+    imprimeFicha(p1);
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Exemplo 07</title>
+  <style media="screen">
+    ul {
+      background-color: lightgreen;
+      padding: 0;
+      text-align: center;
+
+    }
+
+    li {
+      padding: 0.2em;
+      border: 1px solid darkgreen;
+      list-style: none;
+    }
+    section{
+      width: 220px;
+      float: left;
+
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Exemplo 07b</h1>
+  <section>
+    <h2>Múltiplos de 2</h2>
+    <ul></ul>
+  </section>
+  <section>
+    <h2>Múltiplos de 3</h2>
+    <ul></ul>
+  </section>
+  <section>
+    <h2>Outros</h2>
+    <ul></ul>
+  </section>
+  <script>
+    var listas = document.getElementsByTagName("ul");
+    var lista2 = listas[0];
+    var lista3 = listas[1];
+    var listaOutros = listas[2];
+
+    for (var i = 1; i < 10; i++) {
+      var item = document.createElement("li");
+      item.innerHTML = i;
+      if (i % 2 == 0) {
+        lista2.appendChild(item);
+      } else if (i % 3 == 0) {
+        lista3.appendChild(item);
+      } else {
+        listaOutros.appendChild(item);
+      }
+    }
+  </script>
+</body>
+
+</html>

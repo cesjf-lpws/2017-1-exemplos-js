@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Exemplo 09</title>
+</head>
+
+<body>
+  <h1>Exemplo 09</h1>
+
+  <ul>
+    <li>12</li>
+    <li>12</li>
+    <li>3</li>
+    <li>7</li>
+    <li>4</li>
+    <li>8</li>
+  </ul>
+  <p>A média da lista é <output>?</output>.</p>
+
+  <script>
+    //Localizar elementos de entradas
+    var items = document.getElementsByTagName("li");
+    //Localizar elementos de saída
+    var saida = document.getElementsByTagName("output")[0];
+    //Realizar os cálculos
+    var contador = 0;
+    var soma = 0;
+    var i;
+    for (i = 0; i < items.length; i++) {
+      contador++;
+      soma = soma + Number(items[i].innerHTML);
+    }
+    var media = soma / contador;
+    //Imprimir os resultados
+    saida.innerHTML = media.toFixed(2);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Exemplo 04d</title>
+</head>
+
+<body>
+  <h1>Exemplo 04d</h1>
+  <script>
+    function Pessoa(nome, nascimento, altura) {
+      this.nome = nome;
+      this.nascimento = nascimento;
+      this.altura = altura;
+    }
+    Pessoa.prototype.imprimeNome = function() {
+      console.log("Nome:\t" + this.nome);
+    };
+    Pessoa.prototype.imprimeIdade = function() {
+      console.log("Idade:\t" + (2017- this.nascimento));
+    };
+    Pessoa.prototype.imprimeAltura = function() {
+      console.log("Altura:\t" + this.altura + "m");
+    };
+    Pessoa.prototype.imprimeFicha = function() {
+      this.imprimeNome();
+      this.imprimeIdade();
+      this.imprimeAltura();
+    };
+
+    var p1 = new Pessoa("Fulano", 1999, 1.78);
+    var p2 = new Pessoa("Beltrano", 1965, 1.58);
+    console.log(p1, p2);
+    p1.imprimeFicha();
+    p2.imprimeFicha();
+  </script>
+
+</body>
+
+</html>

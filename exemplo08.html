@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Exemplo 08</title>
+  </head>
+  <body>
+    <h1>Exemplo 08</h1>
+    <p>A soma de <var>4.23</var> e <var>2.3</var> é <output>?</output>.</p>
+
+    <script>
+        //Localiza elementos de entrada
+        var vars = document.getElementsByTagName("var");
+        var eA = vars[0];
+        var eB = vars[1];
+        //Localiza elementos de saída
+        var outputs = document.getElementsByTagName("output");
+        var eOutput = outputs[0];
+
+        //Realiza cálculo e outras operações
+        var a = Number(eA.innerHTML);
+        var b = Number(eB.innerHTML);
+        var soma = a+b;
+
+        //Imprime o resultado
+        eOutput.innerHTML = soma;
+    </script>
+
+
+  </body>
+
+
+
+</html>

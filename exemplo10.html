@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Exemplo 10</title>
+    <style>
+      ol{
+        list-style: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Exemplo 10</h1>
+    <p>Os números inteiros entre <var>13</var> e <var>38</var> são:</p>
+    <ol>
+    </ol>
+    <script>
+      //Localizar entrada
+      var limites = document.getElementsByTagName("var");
+      var inicial = Number(limites[0].innerHTML);
+      var   final = Number(limites[1].innerHTML);
+      //Localizar saida
+      var lista = document.getElementsByTagName("ol")[0];
+      //Realizar operações
+      //Imprimir resultado
+      for (var i = inicial; i <= final; i++) {
+        var item = document.createElement("li");
+        item.innerHTML = i;
+        lista.appendChild(item);
+      }
+    </script>
+  </body>
+</html>
