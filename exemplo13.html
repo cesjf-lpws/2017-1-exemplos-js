@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Exemplo 13</title>
+</head>
+
+<body>
+  <h1>Exemplo 13</h1>
+  <p><span>A soma</span> de <var contenteditable>2</var> e <var contenteditable>3</var> é <output>?</output>.</p>
+  <button>+</button>
+  <button>-</button>
+  <button>*</button>
+  <button>/</button>
+  <script>
+    //Localizar entradas
+    var entradas = document.getElementsByTagName("var");
+    var numero1 = entradas[0];
+    var numero2 = entradas[1];
+    var botoes = document.getElementsByTagName("button");
+    var botaoSoma = botoes[0];
+    var botaoSubtracao = botoes[1];
+    var botaoProduto = botoes[2];
+    var botaoDivisao = botoes[3];
+    //Localizar saídas
+    var saida = document.getElementsByTagName("output")[0];
+    var operacao = document.getElementsByTagName("span")[0];
+    //Registro dos eventos
+    botaoSoma.addEventListener("click", function() {
+      //Realizar cálculos
+      var A = Number(numero1.innerHTML);
+      var B = Number(numero2.innerHTML);
+      var C = A + B;
+      //Imprimir resultados
+      saida.innerHTML = C;
+      operacao.innerHTML = "A soma";
+    });
+    botaoSubtracao.addEventListener("click", function() {
+      //Realizar cálculos
+      var A = Number(numero1.innerHTML);
+      var B = Number(numero2.innerHTML);
+      var C = A - B;
+      //Imprimir resultados
+      saida.innerHTML = C;
+      operacao.innerHTML = "A subtração";
+    });
+    botaoProduto.addEventListener("click", function() {
+      //Realizar cálculos
+      var A = Number(numero1.innerHTML);
+      var B = Number(numero2.innerHTML);
+      var C = A * B;
+      //Imprimir resultados
+      saida.innerHTML = C;
+      operacao.innerHTML = "O produto";
+    });
+    botaoDivisao.addEventListener("click", function() {
+      //Realizar cálculos
+      var A = Number(numero1.innerHTML);
+      var B = Number(numero2.innerHTML);
+      var C = A / B;
+      //Imprimir resultados
+      saida.innerHTML = C;
+      operacao.innerHTML = "A divisão";
+    });
+  </script>
+</body>
+
+</html>

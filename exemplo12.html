@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Exemplo 12</title>
+</head>
+
+<body>
+  <h1>Exemplo 12</h1>
+  <p>A soma de <var contenteditable>2</var> e <var contenteditable>3</var> é <output>?</output>.</p>
+  <button>Calcular</button>
+  <script>
+    //Localizar entradas
+    var entradas = document.getElementsByTagName("var");
+    var numero1 = entradas[0];
+    var numero2 = entradas[1];
+    var botao = document.getElementsByTagName("button")[0];
+    //Localizar saídas
+    var saida = document.getElementsByTagName("output")[0];
+    //Registro dos eventos
+    botao.addEventListener("click", function() {
+      //Realizar cálculos
+      var A = Number(numero1.innerHTML);
+      var B = Number(numero2.innerHTML);
+      var C = A + B;
+      //Imprimir resultados
+      saida.innerHTML = C;
+    });
+  </script>
+</body>
+
+</html>
