@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Exemplo 19</title>
+    <style>
+      span{
+        cursor: pointer;
+      }
+      span:active{
+        cursor: pointer;
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Exemplo 19</h1>
+    <form name="dados">
+      <label>Nome: <input type="text" name="nome" /></label>
+      <input type="submit" value="Adicionar"/>
+    </form>
+    <ol id="listaNomes"></ol>
+    <script>
+      var nomes = [
+        "Fulano",
+        "Beltrano"
+      ];
+
+      var ol = document.getElementById("listaNomes");
+      atualizaNomes();
+
+      function atualizaNomes(){
+        ol.innerHTML = "";
+        for (var i = 0; i < nomes.length; i++) {
+          var li = document.createElement("li");
+          li.innerHTML = nomes[i];
+          var span = document.createElement("span");
+          span.innerHTML = "	&#x1F5D1;";
+          span.addEventListener("click",
+          (function(pos){
+            return function(){
+              console.log("X clicado! i:"+pos);
+              removeNome(pos);
+              atualizaNomes();
+            }
+          })(i)
+          );
+          var span2 = document.createElement("span");
+          span2.innerHTML = "	&#x270e;";
+          li.appendChild(span2);
+          li.appendChild(span);
+          ol.appendChild(li);
+        }
+      }
+
+      function adicionaNome(){
+        nomes.push(document.forms.dados.nome.value);
+      }
+
+      function removeNome(posicao){
+        nomes.splice(posicao, 1);
+      }
+
+      document.forms.dados.addEventListener("submit", function(evento){
+        evento.preventDefault();
+        adicionaNome();
+        document.forms.dados.nome.value = "";
+        atualizaNomes();
+      });
+
+    </script>
+
+
+
+
+
+
+
+  </body>
+</html>

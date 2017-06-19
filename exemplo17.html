@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Exemplo 17</title>
+  </head>
+  <body>
+    <h1>Exemplo 17</h1>
+    <form name="numeros">
+      <label><input type="number" name="A" value="1" required/></label>
+      <label><input type="number" name="B" value="10" required/></label>
+      <input type="submit"/>
+    </form>
+    <ul></ul>
+
+    <script>
+      var resultado = document.getElementsByTagName("ul")[0];
+
+      document.forms.numeros.addEventListener("submit", function(evento){
+        evento.preventDefault();
+        var a = Number(document.forms.numeros.A.value);
+        var b = Number(document.forms.numeros.B.value);
+        resultado.innerHTML = "";
+        for(var i = a; i<=b; i++){
+          var li = document.createElement("li");
+          li.innerHTML = i;
+          resultado.appendChild(li);
+        }
+      });
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Exemplo 18</title>
+  </head>
+  <body>
+    <h1>Exemplo 18</h1>
+    <form name="dados">
+      <label>Nome: <input type="text" name="nome" /></label>
+      <input type="submit" value="Adicionar"/>
+    </form>
+    <ol id="listaNomes"></ol>
+    <form name="removedor">
+      <label>Número: <input type="number" name="numero" /></label>
+      <input type="submit" value="Remover"/>
+    </form>
+    <script>
+      var nomes = [
+        "Fulano",
+        "Beltrano"
+      ];
+
+      var ol = document.getElementById("listaNomes");
+      atualizaNomes();
+
+      function atualizaNomes(){
+        ol.innerHTML = "";
+        for (var i = 0; i < nomes.length; i++) {
+          var li = document.createElement("li");
+          li.innerHTML = nomes[i];
+          ol.appendChild(li);
+        }
+      }
+
+      function adicionaNome(){
+        nomes.push(document.forms.dados.nome.value);
+      }
+
+      function removeNome(posicao){
+        nomes.splice(posicao, 1);
+      }
+
+      document.forms.dados.addEventListener("submit", function(evento){
+        evento.preventDefault();
+        adicionaNome();
+        document.forms.dados.nome.value = "";
+        atualizaNomes();
+      });
+
+      document.forms.removedor.addEventListener("submit", function(evento){
+        evento.preventDefault();
+        var posicao = Number(document.forms.removedor.numero.value)-1;
+        removeNome(posicao);
+        document.forms.removedor.numero.value = "";
+        atualizaNomes();
+      })
+    </script>
+
+
+
+
+
+
+
+  </body>
+</html>
