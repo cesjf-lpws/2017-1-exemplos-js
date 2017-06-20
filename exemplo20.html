@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Exemplo 20</title>
+    <style>
+      span{
+        cursor: pointer;
+      }
+      span:active{
+        cursor: pointer;
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Exemplo 20</h1>
+    <form name="dados">
+      <label>Nome: <input type="text" name="nome" /></label>
+      <input type="submit" name="acao" value="Adicionar"/>
+      <input type="hidden" name="posicao" />
+    </form>
+    <ol id="listaNomes"></ol>
+    <script>
+      var nomes = [
+        "Fulano",
+        "Beltrano"
+      ];
+
+      var ol = document.getElementById("listaNomes");
+      atualizaNomes();
+
+      function atualizaNomes(){
+        ol.innerHTML = "";
+        for (var i = 0; i < nomes.length; i++) {
+          var li = document.createElement("li");
+          li.innerHTML = nomes[i];
+          var spExclui = document.createElement("span");
+          spExclui.innerHTML = "	&#x1F5D1;";
+          spExclui.addEventListener("click",
+          (function(pos){
+            return function(){
+              console.log("X clicado! i:"+pos);
+              removeNome(pos);
+              atualizaNomes();
+            }
+          })(i)
+          );
+          var spEdita = document.createElement("span");
+          spEdita.innerHTML = "	&#x270e;";
+          spEdita.addEventListener("click",
+          (function(pos){
+            return function(){
+              carregaDados(pos);
+            }
+          })(i)
+          );
+          li.appendChild(spEdita);
+          li.appendChild(spExclui);
+          ol.appendChild(li);
+        }
+      }
+
+      function adicionaNome(){
+        nomes.push(document.forms.dados.nome.value);
+      }
+
+      function removeNome(posicao){
+        nomes.splice(posicao, 1);
+      }
+
+      document.forms.dados.addEventListener("submit", function(evento){
+        evento.preventDefault();
+        if(document.forms.dados.acao.value == "Adicionar"){
+          adicionaNome();
+          document.forms.dados.nome.value = "";
+          atualizaNomes();
+        } else if (document.forms.dados.acao.value == "Salvar"){
+          var pos = document.forms.dados.posicao.value;
+          nomes[pos] = document.forms.dados.nome.value;
+          document.forms.dados.nome.value = "";
+          document.forms.dados.acao.value = "Adicionar";
+          atualizaNomes();
+        }
+      });
+
+      function carregaDados(posicao) {
+        document.forms.dados.posicao.value = posicao;
+        document.forms.dados.nome.value = nomes[posicao];
+        document.forms.dados.nome.focus();
+        document.forms.dados.acao.value = "Salvar";
+
+
+      }
+
+    </script>
+
+
+
+
+
+
+
+  </body>
+</html>

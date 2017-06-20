@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Exemplo 21</title>
+    <style>
+      span{
+        cursor: pointer;
+      }
+      span:active{
+        cursor: pointer;
+        color: red;
+      }
+      td, th{
+        border: 1px solid black;
+      }
+      .notaBaixa {
+        color: red;
+        border-color: red;
+      }
+
+
+    </style>
+  </head>
+  <body>
+    <h1>Exemplo 21</h1>
+    <form name="dados">
+      <div><label>Nome: <input type="text" name="nome" /></label></div>
+      <div><label>TVC1: <input type="number" name="tvc1" min="0" max="100" step="1" /></label></div>
+      <div><label>TVC2: <input type="number" name="tvc2" min="0" max="100" step="1" /></label></div>
+      <div><label>TVC3: <input type="number" name="tvc3" min="0" max="100" step="1" /></label></div>
+      <input type="submit" name="acao" value="Adicionar"/>
+      <input type="hidden" name="posicao" />
+    </form>
+    <table>
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Nome</th>
+        <th>TVC1</th>
+        <th>TVC2</th>
+        <th>TVC3</th>
+      </tr>
+    </thead>
+    <tbody  id="listaNomes"></tbody>
+    </table>
+    <script>
+      var alunos = [
+        {nome: "Fulano", tvc1: 70, tvc2: 80, tvc3: 50},
+        {nome: "Beltrano", tvc1: 40, tvc2: 20, tvc3: 50}
+      ];
+
+      var listaAlunos = document.getElementById("listaNomes");
+      atualizaNomes();
+
+      function atualizaNomes(){
+        listaAlunos.innerHTML = "";
+        for (var i = 0; i < alunos.length; i++) {
+          var tr = document.createElement("tr");
+          var tdNumero = document.createElement("td");
+          tdNumero.innerHTML = i+1;
+          var tdNome = document.createElement("td");
+          tdNome.innerHTML = alunos[i].nome;
+          var tdTVC1 = document.createElement("td");
+          tdTVC1.innerHTML = alunos[i].tvc1;
+          if(alunos[i].tvc1<60){
+            tdTVC1.classList.add("notaBaixa");
+          }
+          var tdTVC2 = document.createElement("td");
+          tdTVC2.innerHTML = alunos[i].tvc2;
+          if(alunos[i].tvc2<60){
+            tdTVC2.classList.add("notaBaixa");
+          }
+          var tdTVC3 = document.createElement("td");
+          tdTVC3.innerHTML = alunos[i].tvc3;
+          if(alunos[i].tvc3<60){
+            tdTVC3.classList.add("notaBaixa");
+          }
+          tr.appendChild(tdNumero);
+          tr.appendChild(tdNome);
+          tr.appendChild(tdTVC1);
+          tr.appendChild(tdTVC2);
+          tr.appendChild(tdTVC3);
+          var spExclui = document.createElement("span");
+          spExclui.innerHTML = "	&#x1F5D1;";
+          spExclui.addEventListener("click",
+          (function(pos){
+            return function(){
+              console.log("X clicado! i:"+pos);
+              removeNome(pos);
+              atualizaNomes();
+            }
+          })(i)
+          );
+          var spEdita = document.createElement("span");
+          spEdita.innerHTML = "	&#x270e;";
+          spEdita.addEventListener("click",
+          (function(pos){
+            return function(){
+              carregaDados(pos);
+            }
+          })(i)
+          );
+          tdNome.appendChild(spEdita);
+          tdNome.appendChild(spExclui);
+          listaNomes.appendChild(tr);
+        }
+      }
+
+      function adicionaNome(){
+        var novoAluno = {};
+        novoAluno.nome = document.forms.dados.nome.value;
+        novoAluno.tvc1 = Number(document.forms.dados.tvc1.value);
+        novoAluno.tvc2 = Number(document.forms.dados.tvc2.value);
+        novoAluno.tvc3 = Number(document.forms.dados.tvc3.value);
+
+        alunos.push(novoAluno);
+      }
+
+      function removeNome(posicao){
+        alunos.splice(posicao, 1);
+      }
+
+      document.forms.dados.addEventListener("submit", function(evento){
+        evento.preventDefault();
+        if(document.forms.dados.acao.value == "Adicionar"){
+          adicionaNome();
+          document.forms.dados.nome.value = "";
+          document.forms.dados.tvc1.value = "";
+          document.forms.dados.tvc2.value = "";
+          document.forms.dados.tvc3.value = "";
+          atualizaNomes();
+        } else if (document.forms.dados.acao.value == "Salvar"){
+          var pos = document.forms.dados.posicao.value;
+          alunos[pos].nome = document.forms.dados.nome.value;
+          document.forms.dados.nome.value = "";
+          alunos[pos].tvc1 = document.forms.dados.tvc1.value;
+          document.forms.dados.tvc1.value = "";
+          alunos[pos].tvc2 = document.forms.dados.tvc2.value;
+          document.forms.dados.tvc2.value = "";
+          alunos[pos].tvc3 = document.forms.dados.tvc3.value;
+          document.forms.dados.tvc3.value = "";
+          document.forms.dados.acao.value = "Adicionar";
+          atualizaNomes();
+        }
+      });
+
+      function carregaDados(posicao) {
+        document.forms.dados.posicao.value = posicao;
+        document.forms.dados.nome.value = alunos[posicao].nome;
+        document.forms.dados.tvc1.value = alunos[posicao].tvc1;
+        document.forms.dados.tvc2.value = alunos[posicao].tvc2;
+        document.forms.dados.tvc3.value = alunos[posicao].tvc3;
+        document.forms.dados.nome.focus();
+        document.forms.dados.acao.value = "Salvar";
+
+
+      }
+
+    </script>
+
+
+
+
+
+
+
+  </body>
+</html>
