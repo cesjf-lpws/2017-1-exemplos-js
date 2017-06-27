@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Exemplo 22</title>
+  <style>
+    section {
+      width: 200px;
+    }
+
+    #secLogout {
+      display: none;
+    }
+    #mensagem {
+      color: red;
+      height: 2em;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Exemplo 22</h1>
+  <section id="secLogin">
+    <h1>Autenticação</h1>
+    <form name="autenticacao">
+      <div id="mensagem"></div>
+      <label>Usuário:<input name="usuario" type="text" required/></label>
+      <label>Senha: <input name="senha" type="password" required/></label>
+      <input type="submit" value="Login" name="enviar">
+    </form>
+  </section>
+  <section id="secLogout">
+    <p>Bem vindo <span></span>!</p>
+    <button>Logout</button>
+  </section>
+  <script>
+    //Dados
+    var usuarios = [{
+        login: "fulano",
+        senha: "senha123"
+      },
+      {
+        login: "beltrano",
+        senha: "senha321"
+      },
+      {
+        login: "ciclano",
+        senha: "senha213"
+      }
+    ];
+    //Entradas
+    var txtUserName = document.autenticacao.usuario;
+    var txtPassword = document.autenticacao.senha;
+    var formLogin = document.autenticacao;
+    var btnLogout = document.getElementsByTagName("button")[0];
+    //Saídas
+    var sections = document.getElementsByTagName("section");
+    var secLogin = sections[0];
+    var secLogout = sections[1];
+    var spanNome = document.getElementsByTagName("span")[0];
+    var mensagem = document.getElementById("mensagem");
+    //Operações
+    formLogin.addEventListener("submit", function(evento) {
+      evento.preventDefault();
+      for (var i = 0; i < usuarios.length; i++) {
+        if((usuarios[i].login == txtUserName.value) && (usuarios[i].senha == txtPassword.value)){
+          secLogin.style.display = "none";
+          secLogout.style.display = "block";
+          spanNome.innerHTML = usuarios[i].login;
+          mensagem.innerHTML = "";
+          return;// Sai da função
+        }
+      }
+      mensagem.innerHTML = "Nome de usuário ou senha inválidos!";
+      txtUserName.focus();
+    });
+
+    btnLogout.addEventListener("click", function(evento){
+      evento.preventDefault();
+      secLogin.style.display = "block";
+      secLogout.style.display = "none";
+      txtUserName.value = "";
+      txtUserName.focus();
+      txtPassword.value = "";
+    });
+  </script>
+</body>
+
+</html>
